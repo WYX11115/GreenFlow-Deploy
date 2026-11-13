@@ -1,0 +1,63 @@
+# Dependencies and package-manager state
+node_modules/
+.pnpm-store/
+
+# Local environment files (keep the documented template)
+.env
+.env.*
+!.env.example
+
+# TypeScript, Vite, and production build output
+dist/
+coverage/
+.nyc_output/
+.turbo/
+.vite/
+*.tsbuildinfo
+apps/web/vite.config.js
+apps/web/vite.config.d.ts
+
+# Foundry-generated artifacts and fetched libraries
+packages/contracts/out/
+packages/contracts/cache/
+packages/contracts/broadcast/
+packages/contracts/lib/
+
+# Local API runtime data
+apps/api/data/
+apps/api/uploads/*
+!apps/api/uploads/.gitkeep
+
+# Browser and end-to-end test output
+playwright-report/
+test-results/
+blob-report/
+*.trace
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache/
+.tmp/
+tmp/
+temp/
+
+# Editor-local files
+.history/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# Operating-system metadata
+.DS_Store
+**/.DS_Store
+Thumbs.db
+Desktop.ini
+

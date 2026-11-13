@@ -1,0 +1,44 @@
+{
+  "name": "greenflow-bond",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-EVM demonstration of programmable green-bond proceeds controls",
+  "packageManager": "pnpm@12.15.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "pnpm --filter @greenflow/shared build && pnpm --filter @greenflow/api build && pnpm --filter @greenflow/web build && pnpm contracts:build",
+    "chain:start": "anvil --host 127.0.0.1 --port 8545 --chain-id 31337 --mnemonic \"test test test test test test test test test test test junk\" --silent",
+    "contracts:build": "node scripts/run-forge.mjs build --root packages/contracts",
+    "contracts:deploy:phase1": "node scripts/run-forge.mjs script packages/contracts/script/DeployPhase1.s.sol:DeployPhase1 --root packages/contracts --rpc-url http://127.0.0.1:8545 --sender 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --unlocked --broadcast --non-interactive",
+    "contracts:deploy:phase2": "node scripts/run-forge.mjs script packages/contracts/script/DeployPhase2.s.sol:DeployPhase2 --root packages/contracts --rpc-url http://127.0.0.1:8545 --sender 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --unlocked --broadcast --non-interactive",
+    "contracts:deploy:phase4": "node scripts/run-forge.mjs script packages/contracts/script/DeployPhase4.s.sol:DeployPhase4 --root packages/contracts --rpc-url http://127.0.0.1:8545 --sender 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --unlocked --broadcast --non-interactive",
+    "contracts:scenario:phase2": "tsx scripts/run-phase2-scenario.ts",
+    "contracts:test": "node scripts/run-forge.mjs test --root packages/contracts",
+    "contracts:verify:phase1": "tsx scripts/verify-phase1.ts",
+    "contracts:verify:phase2": "tsx scripts/verify-phase2.ts",
+    "contracts:verify:phase4": "tsx scripts/verify-phase4.ts",
+    "demo:start": "tsx scripts/start-demo.ts",
+    "demo:reset": "tsx scripts/reset-demo.ts",
+    "dev": "concurrently --kill-others --names chain,api,web --prefix-colors green,cyan,magenta \"pnpm chain:start\" \"pnpm --filter @greenflow/api dev\" \"pnpm --filter @greenflow/web dev\"",
+    "lint": "pnpm --filter @greenflow/shared build && pnpm -r typecheck && node scripts/run-forge.mjs fmt --check --root packages/contracts",
+    "test": "pnpm --filter @greenflow/shared build && pnpm --filter @greenflow/shared test && pnpm --filter @greenflow/api test && pnpm --filter @greenflow/web test && pnpm contracts:test",
+    "test:e2e": "tsx scripts/e2e-phase4.ts",
+    "test:browser": "tsx scripts/browser-e2e-phase5.ts",
+    "test:smoke": "tsx scripts/smoke-test.ts",
+    "typecheck": "pnpm --filter @greenflow/shared build && pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "@foundry-rs/anvil": "1.7.1",
+    "@foundry-rs/forge": "1.7.1",
+    "@greenflow/shared": "workspace:*",
+    "concurrently": "10.0.6",
+    "pnpm": "12.15.0",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "viem": "2.57.11"
+  }
+}
+

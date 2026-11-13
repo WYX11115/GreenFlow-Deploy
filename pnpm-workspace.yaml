@@ -1,0 +1,14 @@
+packages:
+  - apps/*
+  - packages/*
+
+# These pinned packages need install scripts to place their platform binaries.
+allowBuilds:
+  '@foundry-rs/anvil': true
+  '@foundry-rs/forge': true
+  esbuild: true
+  pnpm: true
+
+minimumReleaseAgeExclude:
+  - '@tanstack/query-core@5.105.0'
+  - '@tanstack/react-query@5.105.0'

@@ -1,0 +1,12 @@
+**/node_modules
+**/dist
+**/.DS_Store
+.git
+.env
+.env.*
+!.env.example
+**/coverage
+**/cache
+**/out
+**/broadcast
+**/.pnpm-store
